@@ -1,1 +1,169 @@
-iweb-index222222
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="icon" href="img/favicon.ico">
+	<title>iWeb在线课堂</title>
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<style>
+		.topbar {
+			width: 100%;
+			height: 29px;
+			line-height: 29px;
+			background: #f9f9f9;
+			border-bottom: 1px solid #eee;
+			text-align: right;
+		}
+		.container {
+			width: 1000px;
+			margin-left: auto;
+			margin-right: auto;
+			border: 1px solid #aaa;	/*仅供测试用*/
+		}
+		.topbar > .container > a,
+		.topbar > .container > span {	/*复杂选择器：> 选择孩子，逗号表示并列选多个*/
+			padding-left: 1em;
+		}
+		.theme {			/*主题色*/
+		}
+		.theme-reverse {	/*主题色的反色*/
+			color: #f60;	
+		}
+		.searchbar {
+			width: 100%;
+			background: #fff;
+		}
+		.searchbar > .container {
+			padding-top: 2em;
+			padding-bottom: 2em;
+		}
+		.search {
+			float: right;  /*搜索条右浮动*/
+			margin-top: 6px;
+		}
+		.search > input {
+			width: 430px;
+			height: 32px;
+			border: 1px solid #ccc;
+			/* 输入框获得焦点时的外围轮廓线 */
+			outline: none;
+			padding-left: .6em;		/*CSS中约定：0.8可简写为.8*/
+			padding-right: .6em;
+			vertical-align: middle; /*行内块元素与同一行中内容竖直对齐*/
+		}
+		.search > .fa-search {
+			background: #57bc4c;
+			color: #fff;
+			font-size: 2.2em;
+			width: 50px;
+			height: 32px;
+			line-height: 32px;	/*文字竖直方向上居中*/
+			text-align: center; /*文字水平方向上居中*/
+			vertical-align: middle; /*行内块元素与同一行中内容竖直对齐*/
+		}
+		.cart-container {
+			/* 修改购物车容器的定位方式，为下拉菜单提供定位参照物，但不脱离文档流 */
+			position: relative;
+			float: right;
+			margin-top: 6px;
+			margin-left: 20px;
+		}
+		.cart {
+			background: #f9f9f9;
+			border: 1px solid #ddd;
+			line-height: 31px;
+			/* 修改光标的样式 */
+			cursor: pointer;
+			position: relative; /*只有定位了的元素才能使用z-index*/
+			z-index: 1;
+			/*border-bottom-color: #fff;  下边框颜色*/
+			border-bottom: none;
+		}
+		.cart > .fa {			/*购物车+小三角*/
+			padding-left: 0.6em;
+			padding-right: 0.6em;
+			color: #57BC4C;
+		}
+		.cart > .caret {		/*小三角的动画基础类*/
+			transform: rotate(0);
+			transition: all  .3s;	/*渐变动画*/
+		}
+		.cart > .caret-rotate {	/*小三角的动画目标类*/
+			transform: rotate(180deg);
+		}
+		.cart-container > .dropdown {
+			position: absolute; /*绝对定位的元素可以处于其他元素上方*/
+			top: 31px;
+			right: 0;
+			border: 1px solid #ddd;
+			/* padding: 2em  3em  2em  3em;   上右下左*/
+			/* padding: 2em 3em 2em;  上右下，左和右的值相同 */
+			padding: 2em  3em;  /*上右， 下和上相同，左和右相同*/
+			width: 262px;
+			background: #fff;	/*DIV元素的默认背景色为透明色*/
+		}
+	</style>
+</head>
+<body>
+	<!-- 顶部条 -->
+	<div class="topbar">
+		<div class="container">
+			<a href="#">
+				<span class="fa fa-star"></span>
+				收藏i前端
+			</a>
+			<a href="#">
+				<span class="fa fa-mobile-phone fa-lg"></span>
+				<span class="theme-reverse">下载手机客户端</span>
+			</a>
+			<span>
+				<span class="fa fa-envelope"></span>
+				反馈邮箱：iweb@tedu.cn
+			</span>
+			<span>
+				<span class="fa fa-mobile-phone fa-lg"></span>
+				客服热线：4008-200-200
+			</span>
+		</div>
+	</div>
+
+	<!-- 搜索条 -->
+	<div class="searchbar">
+		<div class="container">
+			<!-- 1.LOGO -->
+			<img src="img/logo.png" alt="iWeb LOGO">
+			<!-- 3.我的购物车 -->
+			<div class="cart-container">
+				<!-- 购物车：z-index要高于“下拉菜单” -->
+				<div class="cart" id="myCart">
+					<span class="fa fa-shopping-cart fa-lg"></span>
+					<span>我的购物车(<b>0</b>)</span>
+					<span class="fa fa-caret-down caret" id="caret"></span>
+				</div>
+				<!-- 下拉菜单 -->
+				<div class="dropdown">
+					请登录后查看您的购物车
+				</div>
+			</div>
+			
+			<!-- 2.输入框 -->
+			<div class="search">
+				<input type="text" placeholder="课程搜索"><span class="fa fa-search fa-lg"></span>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		// 鼠标进入“我的购物车”则后面的小三角开始旋转；离开则转回来
+		myCart.onmouseenter = ()=>{
+			caret.classList.add('caret-rotate')
+		}
+		myCart.onmouseleave = ()=>{
+			caret.classList.remove('caret-rotate')
+		}
+	</script>
+</body>
+</html>
