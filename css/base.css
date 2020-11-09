@@ -1,20 +1,35 @@
-/* 此文件在包含所有页面都共用的全局css */
-* {		/* 选择所有元素 */
-	/* box-saizing:content-box; 内容盒子 */
-	box-saizing:border-box; /* 边框盒子,简化盒子尺寸计算 */
+/* 此文件中包含所有页面都共用的全局CSS */
+* {		/*选择所有的元素*/
+	/* box-sizing: content-box;  内容盒子(默认值) */
+	box-sizing: border-box; /*边框盒子，简化盒子尺寸计算*/
 }
 body {
 	margin: 0;
 	color: #555;
-	borderground: #fff;
-	font-family: "arial, helvetica, sans-serif";	/*字体*/
-	font-size: 12px;								/*字体的大小*/
-	line-height: 1.667;								/*行高：1.667em*/
+	background: #fff;
+	font-family: "arial, helvetica, sans-serif";  	/*字体*/
+	font-size: 12px;								/*字体大小*/
+	line-height: 1.667;								/*行高：1.667em；*/
 }
 a {
 	color: #555;
 	text-decoration: none;
 }
-a:hover{
+a:hover {	/*伪类选择器，选中“鼠标悬停的状态”*/
 	color: #f60;
+}
+ol, 
+ul {
+	margin: 0;			/*清除浏览器为列表自动添加的样式*/
+	padding: 0;			/*清除浏览器为列表自动添加的样式*/
+}
+li {
+	/* 修改列表项前的提示符号 */
+	/* list-style: disc;  圆饼*/
+	/* list-style: decimal; 数字*/
+	/* list-style: circle; 圆圈*/
+	/* list-style: lower-alpha; 小写字母*/
+	/* list-style: upper-alpha; 大写字母*/
+	/* list-style: upper-roman; 大写罗马字母*/
+	list-style: none;	/*清除列表项前的提示符号*/
 }
